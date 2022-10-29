@@ -33,6 +33,22 @@ router.post('/send-request', async (req, res) => {
     }
 })
 
+router.post('/driver-get-request', async (req, res) => {
+    const { ambNumber } = req.body;
+    try {
+        const requests = await Request.find().where('ambNumber').equals(ambNumber);
+        if(requests[0].status === false){
+            res.status(400).send({ status: false});
+        }
+        else{
+            res.status(200).send({ status: true });
+        }
+        res.json(requests);
+    } catch (err) {
+        res.json({ message: err });
+    }
+})
+
 router.post('/signup', async (req, res) => {
     const driverData = {
         name: req.body.name,

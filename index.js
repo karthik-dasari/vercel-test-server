@@ -20,11 +20,12 @@ const hospitalRoutes = require('./routes/HospitalRoutes');
 app.use('/drivers', driverRoutes);
 app.use('/hospitals', hospitalRoutes);
 
-app.get('/', async(req, res) => {
+app.get('/', async (req, res) => {
     res.send('hello')
 })
 
 const io = require('socket.io')(server, { cors: { origin: "*" } });
+let sid = '';
 io.on('connection', (socket) => {
     console.log('user connected');
 

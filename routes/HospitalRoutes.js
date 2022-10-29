@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Driver = require('../Models/DriverSchema');
 const Hospital = require('../Models/HospitalSchema');
+const Request = require('../Models/RequestSchema');
 
 const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
     if (lat2 === null || lon2 === null) {
@@ -46,6 +47,20 @@ router.get('/', async (req, res) => {
         res.json({ message: err });
     }
 });
+
+router.put('/update-request', async (req, res) => {
+    const ambNumber = req.query.ambNumber;
+    // console.log(ambNumber);
+    try {
+        const request = await Request.find().where('ambNumber').equals(ambNumber);
+        request[0].status = true;
+        console.log(request);
+        const savedRequest = await request[0].save();
+        res.json(savedRequest);
+    } catch (err) {
+        res.json({ message: err });
+    }
+})
 // router.post('/', async (req, res) => {
 //     const ilat = req.body.lat, ilon = req.body.lon;
 //     console.log(`coord ${ilat}, ${ilon}`);
@@ -80,6 +95,15 @@ router.get('/', async (req, res) => {
 //         res.json({ message: err });
 //     }
 // });
+
+router.get('/requests', async (req, res) => {
+    try {
+        const requests = await Request.find();
+        res.json(requests);
+    } catch (err) {
+        res.json({ message: err });
+    }
+})
 
 // router.post('/send-reply', async(req, res) => {
 
