@@ -18,11 +18,12 @@ const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
 const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
 }
+// query params: lat, lon
 
-router.post('/', async (req, res) => {
-    const ilat = req.body.lat, ilon = req.body.lon;
+router.get('/', async (req, res) => {
+    const ilat = req.query.lat, ilon = req.query.lon;
     console.log(`coord ${ilat}, ${ilon}`);
-    console.log(`body  ${req.body}`);
+    console.log(`body  ${req.query}`);
     try {
         const hospitals = await Hospital.find();
         // sort hospitals based on distance between coordinates
@@ -44,6 +45,31 @@ router.post('/', async (req, res) => {
         res.json({ message: err });
     }
 });
+// router.post('/', async (req, res) => {
+//     const ilat = req.body.lat, ilon = req.body.lon;
+//     console.log(`coord ${ilat}, ${ilon}`);
+//     console.log(`body  ${req.body}`);
+//     try {
+//         const hospitals = await Hospital.find();
+//         // sort hospitals based on distance between coordinates
+//         let distanceArray = [];
+//         hospitals.map((hospital) => {
+//             console.log(hospital.lat);
+//             distanceArray.push({
+//                 name: hospital.name,
+//                 distance: getDistanceFromLatLonInKm(ilat, ilon, hospital.lat, hospital.lon)
+//             });
+//         });
+//         distanceArray.sort((a, b) => {
+//             return a.distance - b.distance
+//         });
+
+//         console.log(distanceArray);
+//         res.json(distanceArray);
+//     } catch (err) {
+//         res.json({ message: err });
+//     }
+// });
 
 // router.get('/hospitals', async (req, res) => {
 //     try {
