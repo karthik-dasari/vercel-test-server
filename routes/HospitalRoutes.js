@@ -31,6 +31,7 @@ router.get('/', async (req, res) => {
         hospitals.map((hospital) => {
             console.log(hospital.lat);
             distanceArray.push({
+                hospital: hospital._id,
                 name: hospital.name,
                 distance: Math.round(getDistanceFromLatLonInKm(ilat, ilon, hospital.lat, hospital.lon))
             });
