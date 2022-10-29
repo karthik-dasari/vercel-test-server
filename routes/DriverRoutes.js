@@ -38,10 +38,10 @@ router.post('/driver-get-request', async (req, res) => {
     try {
         const requests = await Request.find().where('ambNumber').equals(ambNumber);
         if(requests[0].status === false){
-            res.status(400).send({ status: false});
+            res.status(200).send({ status: false});
         }
         else{
-            res.status(200).send({ status: true });
+            res.status(202).send({ status: true });
         }
         res.json(requests);
     } catch (err) {
