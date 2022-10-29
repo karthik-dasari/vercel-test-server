@@ -21,6 +21,7 @@ const deg2rad = (deg) => {
 
 router.post('/', async (req, res) => {
     const ilat = req.body.lat, ilon = req.body.lon;
+    console.log(`coord ${ilat}, ${ilon}`);
     try {
         const hospitals = await Hospital.find();
         // sort hospitals based on distance between coordinates
@@ -35,9 +36,8 @@ router.post('/', async (req, res) => {
         distanceArray.sort((a, b) => {
             return a.distance - b.distance
         });
-        
+
         console.log(distanceArray);
-        console.log(ilat, ilon);
         res.json(distanceArray);
     } catch (err) {
         res.json({ message: err });
