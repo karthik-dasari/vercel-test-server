@@ -19,8 +19,10 @@ router.post('/send-request', async (req, res) => {
         hospitalID: req.body.hospitalID,
         description:   req.body.description
     };
+    console.log(requestData);
+    console.log(req.body);
     try {
-        const request = await Request.create(requestData);
+        await Request.create(requestData);
 
         
         res.status(200).send({ status: 'ok' });
