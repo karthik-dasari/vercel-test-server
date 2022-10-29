@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
         // sort hospitals based on distance between coordinates
         let distanceArray = [];
         hospitals.map((hospital) => {
+            console.log(hospital.lat);
             distanceArray.push({
                 name: hospital.name,
                 distance: getDistanceFromLatLonInKm(ilat, ilon, hospital.lat, hospital.lon)
@@ -34,7 +35,9 @@ router.post('/', async (req, res) => {
         distanceArray.sort((a, b) => {
             return a.distance - b.distance
         });
+        
         console.log(distanceArray);
+        console.log(ilat, ilon);
         res.json(distanceArray);
     } catch (err) {
         res.json({ message: err });
