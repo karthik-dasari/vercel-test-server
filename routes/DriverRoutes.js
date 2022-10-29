@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Driver = require('../Models/DriverSchema');
 
+
+
 router.get('/', async (req, res) => {
     try {
         const drivers = await Driver.find();
@@ -11,13 +13,18 @@ router.get('/', async (req, res) => {
     // res.send('Driver Route /');
 });
 
-router.post('/send-condition', async (req, res) => {
-    const cond = req.body.condition;
+router.post('/send-request', async (req, res) => {
+    const requestData = {
+        ambNumber: req.body.ambNumber,
+        hospitalID: req.body.hospitalID,
+        description:   req.body.description
+    };
     try {
-        // const driver = await Driver.findOne({ username: req.body.username });
-        // driver.condition = cond;
-        // await driver.save();
-        res.json({ cond: cond });
+        const request = await Request.create(requestData);
+
+        
+        res.status(200).send({ status: 'ok' });
+        // res.status(2).json({ 'status': 'ok' });
     }
     catch (e) {
         res.send({ status: 'error', error: e });

@@ -81,7 +81,9 @@ router.get('/', async (req, res) => {
 //     }
 // });
 
+// router.post('/send-reply', async(req, res) => {
 
+// })
 
 router.post('/signup', async (req, res) => {
     const hospitalData = {

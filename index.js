@@ -36,6 +36,23 @@ io.on('connection', (socket) => {
     socket.on('send-coords', (data) => {
         const parsedData = JSON.parse(data);
         uniqId = parsedData.id;
+        socket.to(sid).emit('reply', data);
+    });
+
+    socket.on('disconnect', () => {
+        socket.to(sid).emit('disconnect-client', uniqId);
+    });
+});
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
+
+
+
+
+
         // let galat, galon;
 
         // know whether to update or create
@@ -89,12 +106,3 @@ io.on('connection', (socket) => {
         //         socket.to(sid).emit('reply', data);
         //     }
         // });
-        socket.to(sid).emit('reply', data);
-    });
-
-    socket.on('disconnect', () => {
-        socket.to(sid).emit('disconnect-client', uniqId);
-    });
-});
-
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
