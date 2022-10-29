@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
             console.log(hospital.lat);
             distanceArray.push({
                 name: hospital.name,
-                distance: getDistanceFromLatLonInKm(ilat, ilon, hospital.lat, hospital.lon)
+                distance: Math.round(getDistanceFromLatLonInKm(ilat, ilon, hospital.lat, hospital.lon))
             });
         });
         distanceArray.sort((a, b) => {
