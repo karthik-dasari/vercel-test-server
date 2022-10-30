@@ -54,7 +54,8 @@ router.put('/update-request', async (req, res) => {
     // console.log(ambNumber);
     try {
         const request = await Request.find().where('ambNumber').equals(ambNumber);
-        request[0].status = stat;
+        request[0].status[0] = stat;
+        // console.log(request[0].status);
         console.log(request);
         const savedRequest = await request[0].save();
         res.json(savedRequest);
