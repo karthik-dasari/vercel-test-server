@@ -37,10 +37,10 @@ router.post('/driver-get-request', async (req, res) => {
     const { ambNumber } = req.body;
     try {
         const requests = await Request.find().where('ambNumber').equals(ambNumber);
-        if(requests[0].status === 'pending'){
+        if(requests[0].status[0] === 'pending'){
             res.status(200).json({ status: 'pending'});
         }
-        else if(requests[0].status === 'accepted'){
+        else if(requests[0].status[0] === 'accepted'){
             res.status(202).json({ status: 'accepted' });
         }
         else {
