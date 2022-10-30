@@ -12,8 +12,8 @@ const RequestSchema = new Schema({
         type: String,
     },
     status:{
-        type: Boolean,
-        default: false
+        type: ['pending', 'accepted', 'rejected'],
+        default: 'pending'
     },
     timestamp: {
         type: Date,

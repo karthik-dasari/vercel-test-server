@@ -50,10 +50,11 @@ router.get('/', async (req, res) => {
 
 router.put('/update-request', async (req, res) => {
     const ambNumber = req.query.ambNumber;
+    const stat = req.query.stat;
     // console.log(ambNumber);
     try {
         const request = await Request.find().where('ambNumber').equals(ambNumber);
-        request[0].status = true;
+        request[0].status = stat;
         console.log(request);
         const savedRequest = await request[0].save();
         res.json(savedRequest);
