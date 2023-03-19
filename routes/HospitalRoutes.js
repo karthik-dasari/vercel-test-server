@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
 
         // console.log(distanceArray);
         // res.json(distanceArray);
-        res.json({status: 'okayy'});
+        res.send("distanceArray");
  
 });
 
