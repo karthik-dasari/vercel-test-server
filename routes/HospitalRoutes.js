@@ -30,6 +30,7 @@ router.get('/', async (req, res) => {
         // sort hospitals based on distance between coordinates
         let distanceArray = [];
         hospitals.map((hospital) => {
+            console.log("gyfeui");
             console.log(hospital.lat);
             distanceArray.push({
                 hospital: hospital._id,
