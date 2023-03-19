@@ -26,8 +26,8 @@ router.get('/', async (req, res) => {
     console.log(`coord ${ilat}, ${ilon}`);
     console.log(`body  ${req.query}`);
     try {
-        console.log("gyfeui");
         const hospitals = await Hospital.find();
+        console.log("gyfeui");
         // sort hospitals based on distance between coordinates
         let distanceArray = [];
         hospitals.map((hospital) => {
