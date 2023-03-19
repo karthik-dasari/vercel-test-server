@@ -26,23 +26,24 @@ router.get('/', async (req, res) => {
     console.log(`coord ${ilat}, ${ilon}`);
     console.log(`body  ${req.query}`);
     
-        const hospitals = await Hospital.find();
-        // sort hospitals based on distance between coordinates
-        let distanceArray = [];
-        hospitals.map((hospital) => {
-            console.log(hospital.lat);
-            distanceArray.push({
-                hospital: hospital._id,
-                name: hospital.name,
-                distance: Math.round(getDistanceFromLatLonInKm(ilat, ilon, hospital.lat, hospital.lon))
-            });
-        });
-        distanceArray.sort((a, b) => {
-            return a.distance - b.distance
-        });
+        // const hospitals = await Hospital.find();
+        // // sort hospitals based on distance between coordinates
+        // let distanceArray = [];
+        // hospitals.map((hospital) => {
+        //     console.log(hospital.lat);
+        //     distanceArray.push({
+        //         hospital: hospital._id,
+        //         name: hospital.name,
+        //         distance: Math.round(getDistanceFromLatLonInKm(ilat, ilon, hospital.lat, hospital.lon))
+        //     });
+        // });
+        // distanceArray.sort((a, b) => {
+        //     return a.distance - b.distance
+        // });
 
-        console.log(distanceArray);
-        res.json(distanceArray);
+        // console.log(distanceArray);
+        // res.json(distanceArray);
+        res.json({status: 'okayy'});
  
 });
 
