@@ -25,8 +25,7 @@ router.get('/', async (req, res) => {
     const ilat = req.query.lat, ilon = req.query.lon;
     console.log(`coord ${ilat}, ${ilon}`);
     console.log(`body  ${req.query}`);
-    try {
-        console.log("gyfeui");
+    
         const hospitals = await Hospital.find();
         // sort hospitals based on distance between coordinates
         let distanceArray = [];
@@ -44,9 +43,7 @@ router.get('/', async (req, res) => {
 
         console.log(distanceArray);
         res.json(distanceArray);
-    } catch (err) {
-        res.json({ message: err });
-    }
+ 
 });
 
 router.put('/update-request', async (req, res) => {
