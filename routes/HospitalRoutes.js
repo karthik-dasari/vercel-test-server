@@ -24,7 +24,8 @@ const deg2rad = (deg) => {
 router.get('/', async (req, res) => {
     const ilat = req.query.lat, ilon = req.query.lon;
     console.log(`coord ${ilat}, ${ilon}`);
-    console.log(`body  ${req.query}`);
+    // console.log(`body  ${req.query}`);
+    console.log(`body`);
     
         // const hospitals = await Hospital.find();
         // // sort hospitals based on distance between coordinates
